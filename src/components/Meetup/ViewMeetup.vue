@@ -36,7 +36,10 @@
 					</v-card-text>
 					<v-card-actions>
 						<v-spacer></v-spacer>
-						<v-btn class="primary">Register</v-btn>
+						<!-- <v-btn class="primary">Register</v-btn> -->
+						<app-register-dialog 
+						:meetupId="meetup.id"
+						v-if="userIsAuthenticated && !userIsCreator"></app-register-dialog>
 					</v-card-actions>
 				</v-card>
 			</v-flex>
@@ -44,24 +47,24 @@
 	</v-container>
 </template>
 <script>
-	export default {
-		props: ['id'],
-		computed: {
-		     loading () {
-		      	return this.$store.getters.loading
-		     },
-			meetup () {
-				return this.$store.getters.loadedMeetup(this.id)
-			},
-			userIsAuthenticated () {
-				return this.$store.getters.user !== null && this.$store.getters.user !== undefined
-			},
-			userIsCreator () {
-				if (!this.userIsAuthenticated) {
-					return false
-				}
-				return this.$store.getters.user.id === this.meetup.creatorId
+export default {
+	props: ['id'],
+	computed: {
+	     loading () {
+	      	return this.$store.getters.loading
+	     },
+		meetup () {
+			return this.$store.getters.loadedMeetup(this.id)
+		},
+		userIsAuthenticated () {
+			return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+		},
+		userIsCreator () {
+			if (!this.userIsAuthenticated) {
+				return false
 			}
+			return this.$store.getters.user.id === this.meetup.creatorId
 		}
 	}
+}
 </script>

@@ -40,35 +40,35 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        sideNav: false
-      }
-    },
-    computed: {
-      menuItems () {
-        let menuItems = [
-          {icon: 'face', title: 'Join Us', link: '/signup'},
-          {icon: 'lock_open', title: 'Log in', link: '/login'}
-        ]
-        if (this.userIsAuthenticated) {
-          menuItems = [
-            {icon: 'supervisor_account', title: 'Meetups', link: '/meetups'},
-            {icon: 'room', title: 'Organize', link: '/meetup/new'},
-            {icon: 'person', title: 'Profile', link: '/profile'}
-          ]
-        }
-        return menuItems
-      },
-      userIsAuthenticated () {
-        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
-      }
-    },
-    methods: {
-      onLogOut () {
-        this.$store.dispatch('logout')
-      }
-    }
-  }
+export default {
+data () {
+return {
+sideNav: false
+}
+},
+computed: {
+menuItems () {
+let menuItems = [
+{icon: 'face', title: 'Join Us', link: '/signup'},
+{icon: 'lock_open', title: 'Log in', link: '/login'}
+]
+if (this.userIsAuthenticated) {
+menuItems = [
+{icon: 'supervisor_account', title: 'Meetups', link: '/meetups'},
+{icon: 'room', title: 'Organize', link: '/meetup/new'},
+{icon: 'person', title: 'Profile', link: '/profile'}
+]
+}
+return menuItems
+},
+userIsAuthenticated () {
+return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+}
+},
+methods: {
+onLogOut () {
+this.$store.dispatch('logout')
+}
+}
+}
 </script>

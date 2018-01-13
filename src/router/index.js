@@ -10,7 +10,6 @@ import ViewMeetup from '@/components/Meetup/ViewMeetup'
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {

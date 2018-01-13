@@ -26,30 +26,30 @@
 	</v-dialog>
 </template>
 <script>
-	export default {
-		props: ['meetup'],
-		data () {
-			return {
-				editDialog: false,
-				editableTime: null
-			}
-		},
-		methods: {
-			onSaveChanges () {
-					const newDate = new Date(this.meetup.date)
-					const hours = this.editableTime.match(/^(\d+)/)[1]
-          			const minutes = this.editableTime.match(/:(\d+)/)[1]
-          			newDate.setHours(hours)
-          			newDate.setMinutes(minutes)
-          			this.$store.dispatch('updateMeetupData', {
-          				id: this.meetup.id,
-          				date: newDate
-          			})
-          			// editDialog: false,
-				}
-		},
-		created () {
-			this.editableTime = new Date(this.meetup.date).toTimeString()
+export default {
+	props: ['meetup'],
+	data () {
+		return {
+			editDialog: false,
+			editableTime: null
 		}
+	},
+	methods: {
+		onSaveChanges () {
+				const newDate = new Date(this.meetup.date)
+				const hours = this.editableTime.match(/^(\d+)/)[1]
+      			const minutes = this.editableTime.match(/:(\d+)/)[1]
+      			newDate.setHours(hours)
+      			newDate.setMinutes(minutes)
+      			this.$store.dispatch('updateMeetupData', {
+      				id: this.meetup.id,
+      				date: newDate
+      			})
+      			// editDialog: false,
+			}
+	},
+	created () {
+		this.editableTime = new Date(this.meetup.date).toTimeString()
 	}
+}
 </script>

@@ -26,35 +26,32 @@
 	</v-dialog>
 </template>
 <script>
-	export default {
-		props: ['meetup'],
-		data () {
-			return {
-				editDialog: false,
-				editableDate: false
-			}
-		},
-		methods: {
-			onSaveChanges () {
-				const newDate = new Date(this.meetup.date)
-				const newDay = new Date(this.editableDate).getUTCDate()
-				const newMonth = new Date(this.editableDate).getUTCMonth()
-				const newYear = new Date(this.editableDate).getUTCFullYear()
-				newDate.setUTCDate(newDay)
-				newDate.setUTCMonth(newMonth)
-				newDate.setUTCFullYear(newYear)
-				this.$store.dispatch('updateMeetupData', {
-					id: this.meetup.id,
-					date: newDate
-				})
-			}
-		},
-		created () {
-      const pickerDate = new Date(this.meetup.date)
-      this.editableDate = pickerDate.getUTCFullYear() + '-' + (pickerDate.getUTCMonth() + 1) + '-' + pickerDate.getUTCDate()
-    }﻿
-		// created () {
-		// 	this.editableDate = new Date(this.meetup.date)
-		// }
+export default {
+	props: ['meetup'],
+	data () {
+		return {
+			editDialog: false,
+			editableDate: false
+		}
+	},
+	methods: {
+		onSaveChanges () {
+			const newDate = new Date(this.meetup.date)
+			const newDay = new Date(this.editableDate).getUTCDate()
+			const newMonth = new Date(this.editableDate).getUTCMonth()
+			const newYear = new Date(this.editableDate).getUTCFullYear()
+			newDate.setUTCDate(newDay)
+			newDate.setUTCMonth(newMonth)
+			newDate.setUTCFullYear(newYear)
+			this.$store.dispatch('updateMeetupData', {
+				id: this.meetup.id,
+				date: newDate
+			})
+		}
+	},
+	created () {
+		const pickerDate = new Date(this.meetup.date)
+		this.editableDate = pickerDate.getUTCFullYear() + '-' + (pickerDate.getUTCMonth() + 1) + '-' + pickerDate.getUTCDate()
 	}
+}
 </script>
